@@ -1,0 +1,15 @@
+package congtuong.dev.mini_7eleven.exception;
+
+import org.springframework.http.HttpStatus;
+
+public class BadRequestException extends ApiException {
+
+    public BadRequestException(String code, String message) {
+        super(HttpStatus.BAD_REQUEST, code, message);
+    }
+
+    public BadRequestException(String message) {
+        this("BAD_REQUEST", message);
+    }
+}
+

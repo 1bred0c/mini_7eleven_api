@@ -1,0 +1,45 @@
+spring:
+  application:
+    name:
+      mini_7eleven
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          batch_size: 20
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:7ac203995dfe70631613d94a901f921aa318185f7ac203995dfe70631613d94a901f921aa318185f}
+    expiration: ${JWT_EXPIRATION:86400000}
+    refresh-expiration: ${JWT_REFRESH_EXPIRATION:604800000}
+  cors:
+    # Comma-separated value is supported, e.g. "http://localhost:3000,http://localhost:5173"
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173}
+    allowed-methods: ${APP_CORS_ALLOWED_METHODS:GET,POST,PUT,PATCH,DELETE,OPTIONS}
+    allowed-headers: ${APP_CORS_ALLOWED_HEADERS:*}
+    exposed-headers: ${APP_CORS_EXPOSED_HEADERS:Authorization}
+    allow-credentials: ${APP_CORS_ALLOW_CREDENTIALS:true}
+    max-age: ${APP_CORS_MAX_AGE:3600}
+  debug:
+    include-exception-message: ${APP_DEBUG_INCLUDE_EXCEPTION_MESSAGE:false}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
